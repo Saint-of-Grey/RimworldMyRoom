@@ -55,8 +55,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BlueprintUtilities.cs" />
+    <Compile Include="Common\PawnUtilities.cs" />
+    <Compile Include="Common\RoomUtilities.cs" />
+    <Compile Include="Common\ThingUtilities.cs" />
     <Compile Include="MyRoom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThinkNode_FurnitureJob.cs" />
+    <Compile Include="ThinkNode_InstallFurniture.cs" />
+    <Compile Include="ThinkNode_MoveMyFurniture.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
