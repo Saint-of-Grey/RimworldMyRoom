@@ -24,7 +24,7 @@ namespace MyRoom
 
             var myBed = pawn.MyBeds();
 
-            var myRoom = myBed?.Select(x => x.GetRoom()).ToList();
+            var myRoom = RoomUtilities.MyRoom(myBed);
 
             if (myRoom == null || !myRoom.Any()) return null;
 

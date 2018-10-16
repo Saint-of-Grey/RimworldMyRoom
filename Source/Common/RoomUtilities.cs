@@ -43,5 +43,11 @@ namespace MyRoom.Common
             
             return cells;
         }
+
+        public static List<Room> MyRoom(List<Building_Bed> myBed)
+        {
+            var myRoom = myBed?.Select(x => x.GetRoom()).ToList();
+            return myRoom;
+        }
     }
 }

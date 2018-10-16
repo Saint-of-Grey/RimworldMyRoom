@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <MentalBreakDef>
+        <defName>Steal_OwnRoomGreedy</defName>
+        <mentalState>Steal_OwnRoom</mentalState>
+        <baseCommonality>0.4</baseCommonality>
+        <intensity>Minor</intensity>
+        <requiredTrait>Greedy</requiredTrait>
+    </MentalBreakDef>
+    <MentalBreakDef>
+        <defName>Steal_OwnRoom</defName>
+        <mentalState>Steal_OwnRoom</mentalState>
+        <baseCommonality>0.1</baseCommonality>
+        <intensity>Minor</intensity>
+    </MentalBreakDef>
+    <MentalStateDef ParentName="BaseMentalState">
+        <defName>Steal_OwnRoom</defName>
+        <stateClass>MyRoom.MentalState_StealToRoom</stateClass>
+        <workerClass>MyRoom.MentalStateWorker_StealToRoom</workerClass>
+        <label>stealing furniture</label>
+        <category>Misc</category>
+        <minTicksBeforeRecovery>3000</minTicksBeforeRecovery>
+        <recoveryMtbDays>4.6</recoveryMtbDays>
+        <maxTicksBeforeRecovery>30000</maxTicksBeforeRecovery>
+        <recoverFromSleep>true</recoverFromSleep>
+        <moodRecoveryThought>Catharsis</moodRecoveryThought>
+        <blockNormalThoughts>false</blockNormalThoughts>
+        <nameColor>(0.65, 0.9, 0.93)</nameColor>
+        <recoveryMessage>{0} is hording furniture in [PAWN_possessive] room.</recoveryMessage>
+        <beginLetterLabel>hide in room</beginLetterLabel>
+        <beginLetter>{0} is hording furniture to [PAWN_possessive] room.</beginLetter>
+        <beginLetterDef>NegativeEvent</beginLetterDef>
+        <baseInspectLine>Mental state: Hording Furniture</baseInspectLine>
+        <allowBeatfire>true</allowBeatfire>
+        <escapingPrisonersIgnore>false</escapingPrisonersIgnore>
+    </MentalStateDef>
+</Defs>

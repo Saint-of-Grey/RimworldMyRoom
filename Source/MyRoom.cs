@@ -2,7 +2,7 @@
 
 namespace MyRoom
 {
-    public static class Helpers
+    public class Helpers
     {
     }
 }

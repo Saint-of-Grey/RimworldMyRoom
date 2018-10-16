@@ -6,6 +6,15 @@
         <value>
             <li Class="MyRoom.ThinkNode_InstallFurniture" />
             <li Class="MyRoom.ThinkNode_MoveMyFurniture" />
+
+            <!-- Insulting spree -->
+            <li Class="ThinkNode_ConditionalMentalStateClass">
+                <stateClass>MyRoom.MentalState_StealToRoom</stateClass>
+                <subNodes>
+                    <li Class="MyRoom.JobGiver_StealFurniture" />
+                    <li Class="JobGiver_WanderColony" />
+                </subNodes>
+            </li>
         </value>
     </Operation>
 </Patch>
