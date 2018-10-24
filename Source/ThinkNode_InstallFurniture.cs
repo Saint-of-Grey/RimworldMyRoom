@@ -19,24 +19,30 @@ namespace MyRoom
         {
             var minifiedThings = pawn.Map.listerThings.ThingsOfDef(ThingDefOf.MinifiedThing);
 
-            var thingsIWant = minifiedThings.Where(x =>
+            
+            minifiedThings.Where(x =>
                     pawn.WantThat(x, myBed)
                     && pawn.CanReserve(x)
-                    && InstallBlueprintUtility.ExistingBlueprintFor(x) == null)
-                .OrderByDescending(x => x.GetBeautifulValue());
+                    && NoPlans(x))
+                .TryRandomElementByWeight(x => x.GetBeautifulValue(), out var wanted);
             //order thing installed in my room!
-            foreach (var wanted in thingsIWant)
+            if (wanted == null) return null;
             foreach (var room in myRoom)
             {
                 if (room.IsRoomTooNice(pawn)) continue;
 
                 var rot = Rot4.Random;
                 var roomCells = room.CellsNotNextToDoorCardinal();
-                if (wanted.PlaceThing(pawn, roomCells, rot, room, out var furnitureJob1)) return furnitureJob1;
+                if (wanted.PlaceThing(pawn, roomCells, rot, room, out var furnitureJob1) && NoPlans(wanted)) return furnitureJob1;
             }
 
 
             return null;
+        }
+
+        private static bool NoPlans(Thing x)
+        {
+            return InstallBlueprintUtility.ExistingBlueprintFor(x) == null;
         }
     }
 }

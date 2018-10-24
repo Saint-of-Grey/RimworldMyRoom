@@ -18,7 +18,8 @@ namespace MyRoom
             //semi-rare tick
             if (_tick % Commonality() != 0
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
-                || !pawn.RaceProps.ToolUser)
+                || !pawn.RaceProps.ToolUser
+                || pawn.IsPrisoner)
                 return null;
 
 
