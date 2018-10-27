@@ -15,12 +15,6 @@ namespace MyRoom
         public bool insultedTargetAtLeastOnce;
         private int targetFoundTicks;
 
-        // Token: 0x04002674 RID: 9844
-        private const int CheckChooseNewTargetIntervalTicks = 250;
-
-        // Token: 0x04002675 RID: 9845
-        private const int MaxSameTargetChaseTicks = 1250;
-
         public override void ExposeData()
         {
             base.ExposeData();
@@ -70,18 +64,14 @@ namespace MyRoom
             }
             else
             {
-                Thing thing;
+                Thing thing = null;
                 if (target != null && Find.TickManager.TicksGame - targetFoundTicks > 1250 &&
                     candidates.Any(x => x != target))
                 {
                     thing = candidates.Where(x=>x != target).RandomElementByWeight(GetCandidateWeight);
                 }
-                else
-                {
-                    thing = candidates.RandomElementByWeight(GetCandidateWeight);
-                }
 
-                if (thing != target)
+                if (thing != null && thing != target && NoPlan(thing))
                 {
                     target = thing;
                     insultedTargetAtLeastOnce = false;
@@ -93,7 +83,7 @@ namespace MyRoom
         private List<Thing> Candidates()
         {
             var movable = pawn.Map.listerThings.AllThings.Where(x =>
-                    pawn.CanReserve(x) && x.def.Minifiable && InstallBlueprintUtility.ExistingBlueprintFor(x) == null)
+                    pawn.CanReserve(x) && x.def.Minifiable && NoPlan(x))
                 .ToList();
             var myRoom = RoomUtilities.MyRoom(pawn.MyBeds());
             foreach (var room in myRoom)
@@ -103,6 +93,11 @@ namespace MyRoom
             }
 
             return movable;
+        }
+
+        private static bool NoPlan(Thing x)
+        {
+            return InstallBlueprintUtility.ExistingBlueprintFor(x) == null;
         }
 
         // Token: 0x06003C55 RID: 15445 RVA: 0x001C6204 File Offset: 0x001C4604

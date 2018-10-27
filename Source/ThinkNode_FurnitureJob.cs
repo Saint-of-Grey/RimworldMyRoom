@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MyRoom.Common;
 using RimWorld;
@@ -16,7 +17,7 @@ namespace MyRoom
             _tick += 1;
             _tick %= 29387;
             //semi-rare tick
-            if (_tick % Commonality() != 0
+            if (_tick % Math.Min(29387, Commonality()) != 0
                 || !pawn.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)
                 || !pawn.RaceProps.ToolUser
                 || pawn.IsPrisoner)

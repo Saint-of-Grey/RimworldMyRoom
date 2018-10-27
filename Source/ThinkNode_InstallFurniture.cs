@@ -11,7 +11,7 @@ namespace MyRoom
     {
         public override int Commonality()
         {
-            return 13;
+            return (int) (MyRoom.latest.TimerMultipier * 13 * Find.Maps.Sum(x=> x.mapPawns.ColonistCount) + 1);
         }
 
         public override Job FurnitureJob(Pawn pawn, List<Building_Bed> myBed,
